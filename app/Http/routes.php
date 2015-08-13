@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('admin', function(){
+   return view('app');
+});
+
+Route::group(['prefix' => 'admin', 'where' => ['id' => '[0-9]+']], function() {
+
+    Route::get('categories', ['as'=>'categories', 'uses'=>'CategoriesController@index']);
+    Route::post('categories', ['as'=>'categories', 'uses'=>'CategoriesController@store']);
+    Route::get('categories/create', ['as'=>'categories.create', 'uses'=>'CategoriesController@create']);
+
+});
