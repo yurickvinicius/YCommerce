@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: YCommerce
+        psr4_prefix: YCommerce
+        src_path: app
