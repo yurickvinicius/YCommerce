@@ -3,10 +3,8 @@
 namespace YCommerce\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use YCommerce\Category;
 use YCommerce\Http\Requests;
-use YCommerce\Http\Controllers\Controller;
 
 class CategoriesController extends Controller
 {

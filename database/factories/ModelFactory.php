@@ -26,3 +26,14 @@ $factory->define(YCommerce\Category::class, function ($faker) {
         'description' => $faker->sentence(),
     ];
 });
+
+$factory->define(YCommerce\Product::class, function ($faker) {
+    return [
+        'name' => $faker->word(),
+        'description' => $faker->sentence(),
+        'price' => $faker->randomNumber(2),
+        'featured' => $faker->numberBetween(0,1),
+        'recomended' => $faker->numberBetween(0,1),
+        'category_id' => $faker->numberBetween(1,15),
+    ];
+});

@@ -38,6 +38,9 @@
 				<ul class="nav navbar-nav">
 					<li><a href="{{ route('categories') }}">Categories</a></li>
 				</ul>
+				<ul class="nav navbar-nav">
+					<li><a href="{{ route('products') }}">Products</a></li>
+				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::guest())
