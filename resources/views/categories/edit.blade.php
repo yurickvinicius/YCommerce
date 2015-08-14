@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="container">
-        <h2>Create Category</h2>
+        <h2>Edit Category</h2>
 
         @if($errors->any())
 
@@ -14,12 +14,13 @@
 
         @endif
 
-        {!! Form::open(['route'=>'categories']) !!}
+        {!! Form::model($category, ['route'=>['categories.update', $category->id, 'method'=>'put']]) !!}
+        <input type="hidden" name="_method" value="PUT">
 
         @include('categories._form')
 
         <br>
-        {!! Form::submit('Add Categoy', ['class'=>'btn btn-primary']) !!}
+        {!! Form::submit('Update Categoy', ['class'=>'btn btn-primary']) !!}
         <a href="{{ route('categories') }}" class="btn btn-default">Voltar</a>
 
         {!! Form::close() !!}

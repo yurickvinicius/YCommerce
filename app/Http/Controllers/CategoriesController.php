@@ -23,7 +23,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryModel->all();
+        $categories = $this->categoryModel->paginate(10);
         return view('categories.index', compact('categories'));
     }
 
@@ -70,7 +70,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = $this->categoryModel->find($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -80,9 +81,10 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CategoryRequest $request, $id)
     {
-        //
+        $this->categoryModel->find($id)->update($request->all());
+        return redirect()->route('categories');
     }
 
     /**
@@ -93,6 +95,7 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->categoryModel->find($id)->delete($id);
+        return redirect()->route('categories');
     }
 }
