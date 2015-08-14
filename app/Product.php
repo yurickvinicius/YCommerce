@@ -18,4 +18,8 @@ class Product extends Model
     public function category(){
         return $this->belongsTo('YCommerce\Category');
     }
+
+    public function images(){
+        return $this->hasMany('YCommerce\ProductImage');
+    }
 }
