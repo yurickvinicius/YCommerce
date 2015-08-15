@@ -22,4 +22,8 @@ class Product extends Model
     public function images(){
         return $this->hasMany('YCommerce\ProductImage');
     }
+
+    public function tags(){
+        return $this->belongsToMany('YCommerce\Tag');
+    }
 }

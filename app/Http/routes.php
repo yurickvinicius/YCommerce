@@ -34,10 +34,15 @@ Route::group(['prefix' => 'admin', 'where' => ['id' => '[0-9]+']], function() {
     Route::get('products/{id}/destroy', ['as'=>'products.destroy', 'uses'=>'ProductsController@destroy']);
     Route::get('products/{id}/edit', ['as'=>'products.edit', 'uses'=>'ProductsController@edit']);
     Route::put('products/{id}/update', ['as'=>'products.update', 'uses'=>'ProductsController@update']);
-
     Route::get('products/{id}/images', ['as'=>'products.images', 'uses'=>'ProductsController@images']);
     Route::get('products/{id}/images/create', ['as'=>'products.images.create', 'uses'=>'ProductsController@createImage']);
     Route::post('products/{id}/images/store', ['as'=>'products.images.store', 'uses'=>'ProductsController@storeImage']);
     Route::get('products/image/{id}/destroy', ['as'=>'products.images.destroy', 'uses'=>'ProductsController@destroyImage']);
+    Route::get('products/{id}/tags', ['as'=>'products.tags', 'uses'=>'ProductsController@tags']);
+    Route::get('products/{id}/tag/create', ['as'=>'products.tags_create', 'uses'=>'ProductsController@createTag']);
+    Route::post('products/{id}/tag/store', ['as'=>'products.tags_store', 'uses'=>'ProductsController@storeTag']);
+    Route::get('products/{product_id}/tag/{tag_id}/destroy', ['as'=>'products.tags_destroy', 'uses'=>'ProductsController@destroyTag']);
+
+    Route::get('tags', ['as'=>'tags', 'uses'=>'TagsController@index']);
 
 });

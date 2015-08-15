@@ -25,8 +25,9 @@
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->category->name }}</td>
                     <td>
-                        <a href="{{ route('products.images', ['id'=>$product->id]) }}">Images</a>|
                         <a href="{{ route('products.edit', ['id'=>$product->id]) }}">Editar</a>|
+                        <a href="{{ route('products.images', ['id'=>$product->id]) }}">Images</a>|
+                        <a href="{{ route('products.tags', ['id'=>$product->id]) }}">Tags</a>|
                         <a href="{{ route('products.destroy', ['id'=>$product->id]) }}">Deletar</a>
                     </td>
                 </tr>

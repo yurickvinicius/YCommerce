@@ -9,6 +9,7 @@ use YCommerce\Category;
 use YCommerce\Http\Requests;
 use YCommerce\Product;
 use YCommerce\ProductImage;
+use YCommerce\Tag;
 
 class ProductsController extends Controller
 {
@@ -140,5 +141,30 @@ class ProductsController extends Controller
 
         return redirect()->route('products.images',['id'=>$product->id]);
 
+    }
+
+    public function tags($id){
+        $product = $this->productModel->find($id);
+        return view('products.tags', compact('product'));
+    }
+
+    public function createTag(Tag $tag, $id){
+        $tags = $tag->lists('name','id');
+        $product = $this->productModel->find($id);
+        return view('products.create_tag', compact('tags','product'));
+    }
+
+    public function storeTag(Request $request, $id){
+        $product = $this->productModel->find($id);
+        $product->tags()->attach($request->input('tag_id'));
+
+        return redirect()->route('products.tags', ['id'=>$id]);
+    }
+
+    public function destroyTag($product_id, $tag_id){
+        $product = $this->productModel->find($product_id);
+        $product->tags()->detach($tag_id);
+
+        return redirect()->route('products.tags', ['id'=>$product_id]);
     }
 }
