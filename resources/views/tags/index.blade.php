@@ -4,7 +4,7 @@
     <div class="container">
         <h2>Tags</h2>
 
-        <a href="#" class="btn btn-default">New Tag</a>
+        <a href="{{ route('tags.create') }}" class="btn btn-default">New Tag</a>
         <br><br>
 
         <table class="table">
@@ -19,8 +19,8 @@
                     <td>{{ $tag->id }}</td>
                     <td>{{ $tag->name }}</td>
                     <td>
-                        <a href="#">Editar</a>|
-                        <a href="#">Deletar</a>
+                        <a href="{{ route('tags.edit',['id'=>$tag->id]) }}">Editar</a>|
+                        <a href="{{ route('tags.destroy',['id'=>$tag->id]) }}">Deletar</a>
                     </td>
                 </tr>
             @endforeach

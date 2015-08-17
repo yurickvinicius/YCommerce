@@ -3,9 +3,7 @@
 namespace YCommerce\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use YCommerce\Http\Requests;
-use YCommerce\Http\Controllers\Controller;
 use YCommerce\Tag;
 
 class TagsController extends Controller
@@ -35,7 +33,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        //
+        return view('tags.create');
     }
 
     /**
@@ -44,9 +42,12 @@ class TagsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Requests\TagRequest $request)
     {
-        //
+        $tag = $this->tagModel->fill($request->all());
+        $tag->save();
+
+        return redirect()->route('tags');
     }
 
     /**
@@ -68,7 +69,8 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = $this->tagModel->find($id);
+        return view('tags.edit', compact('tag'));
     }
 
     /**
@@ -78,9 +80,10 @@ class TagsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\TagRequest $request, $id)
     {
-        //
+        $this->tagModel->find($id)->update($request->all());
+        return redirect()->route('tags');
     }
 
     /**
@@ -91,6 +94,8 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->tagModel->find($id)->delete($id);
+
+        return redirect()->route('tags');
     }
 }
